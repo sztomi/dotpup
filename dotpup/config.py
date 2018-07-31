@@ -6,11 +6,17 @@ config_filename = "dotpup.json"
 
 
 def _conf_path():
-  return get_repo_path(config_filename) / config_filename
+  return get_repo_path() / config_filename
 
 
 def load_config():
-  with open(_conf_path()) as cfg:
+  conf_path = _conf_path()
+  if not conf_path.exists():
+    with conf_path.open("w") as cfg:
+      json.dump({}, cfg)
+      return {}
+
+  with conf_path.open() as cfg:
     return json.load(cfg)
 
 

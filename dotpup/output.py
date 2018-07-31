@@ -1,7 +1,8 @@
 APP_NAME = "dpup"
 
+
 def _print(app, prefix, text):
-  print(f"[{app}] {prefix:7} {text}")
+  print(f"[{app}] {prefix:8} {text}")
 
 
 def info(text, app=APP_NAME):

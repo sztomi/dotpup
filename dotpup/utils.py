@@ -3,32 +3,28 @@ import platform
 
 from pathlib import Path
 
-import dotpup.config as config
+from . import config
 
 
-def get_repo_path(filepath: Path) -> Path:
-  def find_up(path):
-    last_dir = path.parent
-    current_dir = last_dir
-    while True:
-      full_path = (current_dir / path).resolve(strict=False)
-      if full_path.exists():
-        return full_path
-      last_dir = current_dir
-      current_dir = current_dir.parent
-      if last_dir == current_dir:
-        return None
-  return find_up(filepath)
+def get_repo_path() -> Path:
+  return Path(os.getenv("DOTPUP_REPO"))
 
 
-def unexpand(expanded: str, env_var: str = "HOME") -> str:
-  def shellify_var(var_name: str) -> str:
-    if platform.system() == "Windows":
-      return f"%{var_name}%"
-    else:
-      return f"${var_name}"
-  val = os.environ[env_var]
-  return expanded.replace(val, shellify_var(env_var))
+def shellify_var(var_name: str) -> str:
+  if platform.system() == "Windows":
+    return f"%{var_name}%"
+  else:
+    return f"${var_name}"
+
+
+def unexpand(filepath: str, env_var="HOME") -> str:
+  val = os.getenv(env_var)
+  return filepath.replace(val, shellify_var(env_var))
+
+
+def remove_prefix(filepath: str, env_var="HOME") -> str:
+  val = os.getenv(env_var)
+  return filepath.replace(val, "")[1:]
 
 
 def symlink(src: Path, dst: Path, record=True):
@@ -37,5 +33,3 @@ def symlink(src: Path, dst: Path, record=True):
     os.symlink(src, dst)
   else:
     raise NotImplementedError()
-
-

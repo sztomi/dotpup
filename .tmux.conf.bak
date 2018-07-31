@@ -1,0 +1,13 @@
+set -g mouse on                                                                                                                                                                                                      
+                                                                                                                                                                                                                     
+set-option -g allow-rename off                                                                                                                                                                                       
+                                                                                                                                                                                                                     
+# Keys                                                                                                                                                                                                               
+unbind C-r                                                                                                                                                                                                           
+                                                                                                                                                                                                                     
+# Plugins                                                                                                                                                                                                            
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'                                                                                                                                                                  
+set -g @plugin 'sei40kr/tmux-onedark'                                                                                                                                                                                
+                                                                                                                                                                                                                     
+run '~/.tmux/plugins/tpm/tpm'
+
