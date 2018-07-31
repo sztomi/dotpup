@@ -1,0 +1,9 @@
+{
+  "python.pythonPath": "/usr/bin/python3.6",
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{based_on_style: chromium, indent_width: 2, blank_line_before_nested_class_or_def: false}"
+  ],
+  "editor.formatOnSave": true
+}
