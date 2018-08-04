@@ -7,7 +7,7 @@ from . import config
 
 
 def get_repo_path() -> Path:
-  return Path(os.getenv("DOTPUP_REPO"))
+  return Path(os.getenv("DOTPUP_HOME"))
 
 
 def shellify_var(var_name: str) -> str:
@@ -24,7 +24,10 @@ def unexpand(filepath: str, env_var="HOME") -> str:
 
 def remove_prefix(filepath: str, env_var="HOME") -> str:
   val = os.getenv(env_var)
-  return filepath.replace(val, "")[1:]
+  unprefixed = filepath.replace(val, "")
+  if unprefixed[0] in ("/", "\\"):
+    unprefixed = unprefixed[1:]
+  return unprefixed
 
 
 def symlink(src: Path, dst: Path, record=True):

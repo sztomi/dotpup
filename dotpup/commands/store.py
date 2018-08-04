@@ -1,9 +1,11 @@
 from pathlib import Path
-from .base import BaseCommand
+from os import makedirs
 
 from dotpup.utils import symlink, get_repo_path
 
 import dotpup.output as output
+
+from .base import BaseCommand
 
 
 class StoreCommand(BaseCommand):
@@ -23,18 +25,23 @@ class StoreCommand(BaseCommand):
 
     # Move to repo and symlink back
     repo = get_repo_path()
-    repo_file = Path(f"{repo}/{remove_prefix(args.target_file)}")
-    print(f"Moving {args.target_file} to {repo_file}")
+    target_file = str(Path(args.target_file).resolve())
+    repo_file = Path(f"{repo}/{remove_prefix(target_file)}")
+    print(f"Moving {target_file} to {repo_file}")
+    makedirs(repo_file.parent, exist_ok=True)
     shutil.move(args.target_file, repo_file)
-    print(f"Linking {repo_file} to {args.target_file}")
-    symlink(repo_file, args.target_file)
+    print(f"Linking {repo_file} to {target_file}")
+    symlink(repo_file, target_file)
 
     cfg = config.load_config()
     if "operations" not in cfg:
       cfg["operations"] = {}
 
-    dst = remove_prefix(args.target_file)
-    cfg["operations"][platform.system()] = {dst: unexpand(args.target_file)}
+    dst = remove_prefix(target_file)
+    os_name = platform.system()
+    if os_name not in cfg["operations"]:
+      cfg["operations"][os_name] = {}
+    cfg["operations"][os_name][dst] = unexpand(target_file)
     config.save_config(cfg)
 
     return 0
