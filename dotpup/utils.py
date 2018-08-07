@@ -7,6 +7,8 @@ from . import config
 
 
 def get_repo_path() -> Path:
+  if "DOTPUP_HOME" not in os.environ:
+    raise RuntimeError("ERROR: Please set DOTPUP_HOME.")
   return Path(os.getenv("DOTPUP_HOME"))
 
 

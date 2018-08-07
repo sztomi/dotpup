@@ -3,6 +3,7 @@ from textwrap import TextWrapper
 
 from abc import abstractmethod, ABC
 
+
 class BaseCommand(ABC):
   def __init__(self, name, desc):
     self.name = name
@@ -16,11 +17,11 @@ class BaseCommand(ABC):
 
   def format_help(self):
     wrapper = TextWrapper()
-    lines = wrapper.wrap(f"  {self.name:6}{self.parser.description}")
+    lines = wrapper.wrap(f"  {self.name:8}{self.parser.description}")
     first, rest = lines[0], lines[1:]
     final = [first]
     for line in rest:
-      final.append(" "*8 + line)
+      final.append(" " * 10 + line)
     return "\n".join(final)
 
   def format_usage(self):

@@ -8,7 +8,7 @@ from dotpup import output
 class DotPup(ArgumentParser):
   # list of allowed commands to protect
   # from importing arbitrary modules
-  commands = ["link", "store"]
+  commands = ["link", "store", "update"]
 
   def __init__(self, *args, **kwargs):
     super().__init__(*args, **kwargs)
