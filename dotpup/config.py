@@ -1,11 +1,10 @@
 import json
 
-from dotpup.utils import get_repo_path
-
 config_filename = "dotpup.json"
 
 
 def _conf_path():
+  from dotpup.utils import get_repo_path
   return get_repo_path() / config_filename
 
 
