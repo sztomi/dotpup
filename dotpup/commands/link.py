@@ -8,6 +8,9 @@ def do_link(repo_file: Path, target_file: Path):
   if target_file.is_dir():
     target_file = target_file / repo_file.name
 
+  if not target_file.parent.exists():
+    target_file.parent.mkdir(parents=True, exist_ok=True)
+
   symlink(repo_file, target_file)
   save_operation(repo_file, target_file)
 
