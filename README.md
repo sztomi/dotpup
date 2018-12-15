@@ -15,9 +15,14 @@ Python 3.6+ is required.
 ## Usage
 
 dotpup has three commands. All of them require setting DOTPUP_HOME. Typically,
-you will want to have a dotfiles directory somewhere (I have `$HOME/dotfiles`).
+you will want to have a dotfiles directory somewhere (I have `$HOME/dotfiles`)
+and set the environment variable in your bashrc or zshrc:
 
-You can start with an empty directory.
+```
+export DOTPUP_HOME=$HOME/dotfiles
+```
+
+You can start with an empty directory and use the dotpup commands to populate it.
 
 ### dpup store
 
