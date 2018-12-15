@@ -3,7 +3,7 @@ from os import getenv
 
 setup(
     name="dotpup",
-    version=getenv("DOTPUP_VERSION", "1.0.9999"),
+    version=getenv("DOTPUP_VERSION", "1.0.0"),
     packages=find_packages(),
     license="MIT",
     long_description=open("README.md").read(),
