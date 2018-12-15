@@ -1,1 +1,1 @@
-## dotpup manages dotfiles accross platforms
+## dotpup manages dotfiles across platforms
