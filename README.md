@@ -7,8 +7,10 @@ it's up to you. You may use git, rsync, dropbox, nextcloud etc.
 ## Installation
 
 ```
-$ pip install dotpup
+$ pip3 install dotpup
 ```
+
+Python 3.6+ is required.
 
 ## Usage
 
