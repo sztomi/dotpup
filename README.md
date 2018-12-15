@@ -82,3 +82,7 @@ $ dpup update
 
 This performs the operations for the current platform or (optionally) for a
 different platform. This is useful when you are setting up on a new machine.
+
+## TODO
+
+Windows suppport is lacking at the moment, but I do intend to add it.
