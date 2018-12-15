@@ -3,3 +3,4 @@ __pycache__/
 dotpup.json
 dist/
 build/
+.vscode/
